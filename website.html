@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Service - Jasa Service Komputer & Laptop Profesional</title>
+    
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        }
+        
+        @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-slide-in-up { animation: slide-in-up 0.8s ease-out forwards; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .neon-border {
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Canvas Background */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-8 { margin-bottom: 32px; }
+        .mb-12 { margin-bottom: 48px; }
+        .mb-16 { margin-bottom: 64px; }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(0, 0, 0, 0.8), rgba(139, 92, 246, 0.1));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: clamp(18px, 3vw, 24px);
+            color: #d1d5db;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .card p {
+            color: #9ca3af;
+            margin-bottom: 16px;
+        }
+        
+        .card-list {
+            list-style: none;
+        }
+        
+        .card-list li {
+            color: #d1d5db;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+        
+        /* Team Section */
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-avatar {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 48px;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #d1d5db;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: white;
+        }
+        
+        .testimonial-position {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #3b82f6;
+            width: 32px;
+            border-radius: 4px;
+        }
+        
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #d1d5db;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+        }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #6b7280;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.1));
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 48px 20px 24px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(59, 130, 246, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            color: #6b7280;
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-1 {
+            top: 80px;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .floating-2 {
+            bottom: 80px;
+            right: 40px;
+            width: 128px;
+            height: 128px;
+            animation-delay: 2s;
+        }
+        
+        .floating-3 {
+            top: 50%;
+            left: 25%;
+            width: 64px;
+            height: 64px;
+            animation-delay: 4s;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                margin-top: 8px;
+                padding: 16px;
+            }
+            
+            .mobile-menu li {
+                list-style: none;
+                margin-bottom: 8px;
+            }
+            
+            .mobile-menu a {
+                color: #d1d5db;
+                text-decoration: none;
+                display: block;
+                padding: 8px 16px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-menu a:hover, .mobile-menu a.active {
+                background: rgba(59, 130, 246, 0.2);
+                color: #3b82f6;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Hidden class */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Opacity animation */
+        .opacity-0 {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .opacity-1 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="cpu" style="width: 20px; height: 20px; color: white;"></i>
+                </div>
+                <span class="logo-text gradient-text">IT Service</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+            </button>
+            
+            <div class="mobile-menu hidden" id="mobileMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element floating-1"></div>
+        <div class="floating-element floating-2"></div>
+        <div class="floating-element floating-3"></div>
+        
+        <div class="hero-content animate-slide-in-up">
+            <h1>
+                <span class="gradient-text">Jasa Service Komputer & Laptop</span><br>
+                <span>Profesional</span>
+            </h1>
+            <p>
+                Install ulang, upgrade RAM/SSD, perbaikan hardware, troubleshooting software, 
+                semua cepat & bergaransi.
+            </p>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">
+                    <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                    Pesan Sekarang
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
+                   target="_blank" class="btn btn-secondary">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Layanan Kami</h2>
+                <p class="text-xl text-gray-400">Solusi lengkap untuk semua kebutuhan IT Anda</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="monitor" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Install Ulang Windows/Linux</h3>
+                    <p>Install ulang sistem operasi Windows dan Linux dengan driver lengkap</p>
+                    <ul class="card-list">
+                        <li>Windows 10/11</li>
+                        <li>Ubuntu/Linux Mint</li>
+                        <li>Driver Installation</li>
+                        <li>Software Setup</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="cpu" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Upgrade RAM & SSD</h3>
+                    <p>Upgrade komponen untuk performa maksimal dan booting lebih cepat</p>
+                    <ul class="card-list">
+                        <li>RAM Upgrade</li>
+                        <li>SSD Installation</li>
+                        <li>Performance Tuning</li>
+                        <li>Component Consultation</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="hard-drive" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Perawatan Hardware</h3>
+                    <p>Cleaning dan maintenance hardware untuk umur panjang</p>
+                    <ul class="card-list">
+                        <li>Dust Cleaning</li>
+                        <li>Thermal Paste</li>
+                        <li>Cable Management</li>
+                        <li>Hardware Check</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="shield" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Perbaikan Laptop/PC</h3>
+                    <p>Service hardware dan software untuk berbagai masalah</p>
+                    <ul class="card-list">
+                        <li>No Display</li>
+                        <li>Overheating</li>
+                        <li>Blue Screen</li>
+                        <li>Hardware Repair</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="zap" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Optimasi Software</h3>
+                    <p>Optimasi sistem untuk performa terbaik dan stabil</p>
+                    <ul class="card-list">
+                        <li>Speed Optimization</li>
+                        <li>Virus Removal</li>
+                        <li>System Cleanup</li>
+                        <li>Software Updates</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="wifi" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3>Backup & Recovery</h3>
+                    <p>Backup data penting dan recovery data yang hilang</p>
+                    <ul class="card-list">
+                        <li>Data Backup</li>
+                        <li>File Recovery</li>
+                        <li>Cloud Setup</li>
+                        <li>Data Migration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
+        <div class="container">
+            <div class="grid grid-2" style="align-items: center;">
+                <div class="opacity-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Tentang Kami</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        IT Service adalah penyedia layanan komputer dan laptop profesional yang telah 
+                        berpengalaman lebih dari 5 tahun dalam industri IT. Kami berkomitmen untuk 
+                        memberikan solusi teknologi terbaik dengan harga terjangkau.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Dengan tim ahli yang bersertifikat dan peralatan modern, kami siap 
+                        menangani berbagai masalah teknologi dari yang sederhana hingga kompleks. 
+                        Kepuasan pelanggan adalah prioritas utama kami.
+                    </p>
+                    <div class="grid grid-2" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-400 mb-2">1000+</div>
+                            <div class="text-gray-400">Pelanggan Puas</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-400 mb-2">5+</div>
+                            <div class="text-gray-400">Tahun Pengalaman</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="opacity-0">
+                    <div style="position: relative;">
+                        <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite;">
+                            <div style="text-align: center;">
+                                <i data-lucide="monitor" style="width: 128px; height: 128px; color: #3b82f6; margin-bottom: 16px;"></i>
+                                <i data-lucide="cpu" style="width: 96px; height: 96px; color: #8b5cf6; margin-bottom: 16px;"></i>
+                                <i data-lucide="hard-drive" style="width: 80px; height: 80px; color: #06b6d4;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Tim Kami</h2>
+                <p class="text-xl text-gray-400">6 ahli IT berpengalaman siap membantu Anda</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float">👨‍💻</div>
+                    <h3>Apik Rendi Firmansyah
+                    <div class="badge badge-primary">Hardware Specialist</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Hardware Repair</span>
+                        <span class="skill-badge">PC Building</span>
+                        <span class="skill-badge">Component Diagnosis</span>
+                        <span class="skill-badge">Upgrade Specialist</span>
+                    </div>
+                </div>
+                
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float" style="animation-delay: 1s;">👩‍💻</div>
+                    <h3>Mochammad Rizqi Dirgantoro</h3>
+                    <div class="badge badge-primary">Software Engineer</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Expert dalam troubleshooting software dan instalasi sistem operasi
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">OS Installation</span>
+                        <span class="skill-badge">Software Troubleshooting</span>
+                        <span class="skill-badge">Driver Management</span>
+                        <span class="skill-badge">System Optimization</span>
+                    </div>
+                </div>
+                
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float" style="animation-delay: 2s;">👨‍🔧</div>
+                    <h3>Budi Santoso</h3>
+                    <div class="badge badge-primary">Network Engineer</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Network Setup</span>
+                        <span class="skill-badge">WiFi Configuration</span>
+                        <span class="skill-badge">Security Systems</span>
+                        <span class="skill-badge">Cable Management</span>
+                    </div>
+                </div>
+                
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float" style="animation-delay: 3s;">👩‍🔬</div>
+                    <h3>Dewi Lestari</h3>
+                    <div class="badge badge-primary">Data Recovery Expert</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Spesialis pemulihan data dan backup system yang hilang
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Data Recovery</span>
+                        <span class="skill-badge">Backup Solutions</span>
+                        <span class="skill-badge">Forensik Digital</span>
+                        <span class="skill-badge">RAID Recovery</span>
+                    </div>
+                </div>
+                
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float" style="animation-delay: 4s;">🎮</div>
+                    <h3>Eko Prasetyo</h3>
+                    <div class="badge badge-primary">Gaming PC Builder</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Expert dalam build PC gaming dan optimasi performa
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Gaming PC Build</span>
+                        <span class="skill-badge">Overclocking</span>
+                        <span class="skill-badge">Performance Tuning</span>
+                        <span class="skill-badge">RGB Setup</span>
+                    </div>
+                </div>
+                
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar animate-float" style="animation-delay: 5s;">👩‍💼</div>
+                    <h3>Maya Putri</h3>
+                    <div class="badge badge-primary">Customer Relations</div>
+                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                        Koordinator layanan pelanggan dan project manager
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Customer Service</span>
+                        <span class="skill-badge">Project Management</span>
+                        <span class="skill-badge">Communication</span>
+                        <span class="skill-badge">Quality Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Testimoni Pelanggan</h2>
+                <p class="text-xl text-gray-400">Apa kata mereka tentang layanan kami</p>
+            </div>
+            
+            <div class="testimonial-card card opacity-0">
+                <div class="stars" id="stars">
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                </div>
+                <p class="testimonial-text" id="testimonialText">
+                    "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah."
+                </p>
+                <div class="testimonial-author" id="testimonialAuthor">Andi Wijaya</div>
+                <div class="testimonial-position" id="testimonialPosition">CEO Tech Startup</div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="dot active" onclick="showTestimonial(0)"></div>
+                <div class="dot" onclick="showTestimonial(1)"></div>
+                <div class="dot" onclick="showTestimonial(2)"></div>
+                <div class="dot" onclick="showTestimonial(3)"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Hubungi Kami</h2>
+                <p class="text-xl text-gray-400">Siap membantu 24/7 untuk kebutuhan IT Anda</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <div class="opacity-0">
+                    <div class="card">
+                        <h3 style="font-size: 24px; margin-bottom: 8px; color: white;">Kirim Pesan</h3>
+                        <p style="color: #9ca3af; margin-bottom: 24px;">Kami akan segera merespon pesan Anda</p>
+                        <form action="https://formsubmit.co/pamanerizqi@gmail.com" method="POST" style="display:flex;flex-direction:column;gap:16px;">
+                            <input type="text" name="nama" placeholder="Nama Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;">
+                            <input type="email" name="email" placeholder="Email Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;">
+                            <textarea name="pesan" placeholder="Pesan Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;min-height:100px;"></textarea>
+                            <button type="submit" style="background:#3b82f6;color:#fff;padding:12px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;width:100%;">
+                                <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="opacity-0">
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="phone" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;">Telepon</div>
+                            <div style="color: #9ca3af;">0858-4815-5578</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="mail" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;">Email</div>
+                            <div style="color: #9ca3af;">pamanerizqi@gmail.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;">Alamat</div>
+                            <div style="color: #9ca3af;">SMKN 1 Purwokerto, TJKT</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
+                       target="_blank" class="btn btn-primary" style="width: 100%; background: #10b981;">
+                        <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                        Chat via WhatsApp
+                    </a>
+                    
+                    <div style="width: 100%; height: 256px; border-radius: 16px; overflow: hidden; margin-top: 16px;">
+                        <iframe src="https://www.google.com/maps?q=SMKN+1+Purwokerto&output=embed" width="100%" height="256" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <div style="width: 32px; height: 32px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="cpu" style="width: 20px; height: 20px; color: white;"></i>
+                    </div>
+                    <span style="font-size: 20px; font-weight: bold;" class="gradient-text">IT Service</span>
+                </div>
+                <p style="color: #9ca3af;">
+                    Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.
+                </p>
+            </div>
+            
+            <div>
+                <h3 style="color: white; margin-bottom: 16px;">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: white; margin-bottom: 16px;">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/exetones_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-link">
+                        <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 IT Service. All rights reserved. Made with ❤️ in Indonesia</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Particle Animation
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+                ctx.fill();
+            });
+            
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.2 * (1 - distance / 100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Update active nav link
+            const sections = ['home', 'services', 'about', 'team', 'testimonials', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        document.querySelectorAll(`.nav-link[href="#${section}"]`).forEach(link => {
+                            link.classList.add('active');
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Testimonials
+        const testimonials = [
+            {
+                text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                author: "Andi Wijaya",
+                position: "CEO Tech Startup"
+            },
+            {
+                text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
+                author: "Sarah Putri",
+                position: "Freelance Designer"
+            },
+            {
+                text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
+                author: "Budi Hartono",
+                position: "IT Manager"
+            },
+            {
+                text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
+                author: "Maya Anggraini",
+                position: "Content Creator"
+            }
+        ];
+        
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            currentTestimonial = index;
+            document.getElementById('testimonialText').textContent = `"${testimonials[index].text}"`;
+            document.getElementById('testimonialAuthor').textContent = testimonials[index].author;
+            document.getElementById('testimonialPosition').textContent = testimonials[index].position;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+
+        
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-1');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.opacity-0').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</script>
+
+
+</body>
+</html>
