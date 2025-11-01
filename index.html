@@ -32,8 +32,8 @@
         }
         
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+            0%, 100% { box-shadow: 0 0 20px rgba(28, 78, 128, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(28, 78, 128, 0.5); }
         }
         
         @keyframes slide-in-up {
@@ -134,10 +134,11 @@
             width: 32px;
             height: 32px;
             background: #3b82f6;
-            border-radius: 8px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         
         .logo-text {
@@ -421,16 +422,20 @@
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 4px;
             margin-top: 16px;
+            justify-content: center;
+            align-items: center;
         }
         
         .skill-badge {
             background: rgba(255, 255, 255, 0.1);
             color: #d1d5db;
-            padding: 4px 8px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 11px;
+            margin: 4px;
+            white-space: nowrap;
         }
         
         /* Testimonials */
@@ -898,11 +903,9 @@
                 
                 <div class="opacity-0">
                     <div style="position: relative;">
-                        <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite;">
-                            <div style="text-align: center;">
-                                <i data-lucide="monitor" style="width: 128px; height: 128px; color: #3b82f6; margin-bottom: 16px;"></i>
-                                <i data-lucide="cpu" style="width: 96px; height: 96px; color: #8b5cf6; margin-bottom: 16px;"></i>
-                                <i data-lucide="hard-drive" style="width: 80px; height: 80px; color: #06b6d4;"></i>
+                        <div style="width: 400px; height: 400px; margin: 0 auto; background: linear-gradient(135deg, rgba(13, 38, 76, 0.2), rgba(28, 78, 128, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite; overflow: hidden; box-shadow: 0 0 40px rgba(28, 78, 128, 0.3);">
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(28, 78, 128, 0.1) 0%, rgba(13, 38, 76, 0.2) 100%);">
+                                <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
                             </div>
                         </div>
                     </div>
@@ -930,7 +933,7 @@
                         Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/freakingrend" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:apik@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -956,7 +959,7 @@
                         Expert dalam troubleshooting software dan instalasi sistem operasi
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/rizzdirga" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:rizqi@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -982,7 +985,7 @@
                         Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/viii_allll" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:rio@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -1007,7 +1010,7 @@
                         Specialist in data recovery and backup system restoration
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/nailur.rajaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:yaqut@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -1032,7 +1035,7 @@
                     <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="gamingSpecDesc">
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/zandraisani" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:bagus@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -1057,7 +1060,7 @@
                     <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="custRelationsDesc">
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
-                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                        <a href="https://www.instagram.com/reskianggaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="mailto:reski@syarartech.com" style="color: #3B82F6; text-decoration: none;">
@@ -1184,7 +1187,7 @@
         <div class="footer-content">
             <div>
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                    <div style="width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                         <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width:32px;height:32px;">
                     </div>
                     <span style="font-size: 20px; font-weight: bold;" class="gradient-text" data-translate="brandName">Syarar Tech</span>
