@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
+    <!DOCTYPE html>
+<html lang="id" data-lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Service - Jasa Service Komputer & Laptop Profesional</title>
+    <title>Syarar Tech - Jasa Service Komputer & Laptop Profesional</title>
     
     <!-- Font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -117,6 +117,12 @@
             height: 64px;
         }
         
+        .nav-menu-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
         .logo {
             display: flex;
             align-items: center;
@@ -162,6 +168,32 @@
             border: none;
             color: white;
             cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .language-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-select:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-select option {
+            background: #1a1a1a;
+            color: white;
         }
         
         /* Sections */
@@ -354,9 +386,16 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
-            font-size: 48px;
             border: 2px solid #3b82f6;
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         .badge {
@@ -668,30 +707,38 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <div class="logo-icon">
-                    <i data-lucide="cpu" style="width: 20px; height: 20px; color: white;"></i>
+                <div class="logo-icon" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width:100%;height:100%;">
                 </div>
-                <span class="logo-text gradient-text">IT Service</span>
+                <span class="logo-text gradient-text" data-translate="brandName">Syarar Tech</span>
             </a>
             
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#team" class="nav-link">Team</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
+                    <li><a href="#services" class="nav-link" data-translate="menuServices">Services</a></li>
+                    <li><a href="#about" class="nav-link" data-translate="menuAbout">About</a></li>
+                    <li><a href="#team" class="nav-link" data-translate="menuTeam">Team</a></li>
+                    <li><a href="#contact" class="nav-link" data-translate="menuContact">Contact</a></li>
+                </ul>
+            </div>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
-            </button>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="id">🇮🇩 ID</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+                </button>
+            </div>
             
             <div class="mobile-menu hidden" id="mobileMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#team" class="nav-link">Team</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
+                <li><a href="#services" class="nav-link" data-translate="menuServices">Services</a></li>
+                <li><a href="#about" class="nav-link" data-translate="menuAbout">About</a></li>
+                <li><a href="#team" class="nav-link" data-translate="menuTeam">Team</a></li>
+                <li><a href="#contact" class="nav-link" data-translate="menuContact">Contact</a></li>
             </div>
         </div>
     </nav>
@@ -704,22 +751,22 @@
         
         <div class="hero-content animate-slide-in-up">
             <h1>
-                <span class="gradient-text">Jasa Service Komputer & Laptop</span><br>
-                <span>Profesional</span>
+                <span class="gradient-text" data-translate="heroTitle">Jasa Service Komputer & Laptop</span><br>
+                <span data-translate="heroSuffix">Professional</span>
             </h1>
-            <p>
+            <p data-translate="heroSubtitle">
                 Install ulang, upgrade RAM/SSD, perbaikan hardware, troubleshooting software, 
                 semua cepat & bergaransi.
             </p>
             <div class="btn-group">
                 <a href="#contact" class="btn btn-primary">
                     <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
-                    Pesan Sekarang
+                    <span data-translate="orderNow">Pesan Sekarang</span>
                 </a>
                 <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
                    target="_blank" class="btn btn-secondary">
                     <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
-                    Hubungi Kami
+                    <span data-translate="contactUs">Hubungi Kami</span>
                 </a>
             </div>
         </div>
@@ -729,8 +776,8 @@
     <section id="services">
         <div class="container">
             <div class="text-center mb-16 opacity-0">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Layanan Kami</h2>
-                <p class="text-xl text-gray-400">Solusi lengkap untuk semua kebutuhan IT Anda</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="servicesTitle">Layanan Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="servicesSubtitle">Solusi lengkap untuk semua kebutuhan IT Anda</p>
             </div>
             
             <div class="grid grid-3">
@@ -738,13 +785,13 @@
                     <div class="card-icon">
                         <i data-lucide="monitor" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Install Ulang Windows/Linux</h3>
-                    <p>Install ulang sistem operasi Windows dan Linux dengan driver lengkap</p>
+                    <h3 data-translate="installTitle">Install Ulang Windows/Linux</h3>
+                    <p data-translate="installDesc">Install ulang sistem operasi Windows dan Linux dengan driver lengkap</p>
                     <ul class="card-list">
-                        <li>Windows 10/11</li>
-                        <li>Ubuntu/Linux Mint</li>
-                        <li>Driver Installation</li>
-                        <li>Software Setup</li>
+                        <li data-translate="windows">Windows 10/11</li>
+                        <li data-translate="linux">Ubuntu/Linux Mint</li>
+                        <li data-translate="driver">Driver Installation</li>
+                        <li data-translate="software">Software Setup</li>
                     </ul>
                 </div>
                 
@@ -752,13 +799,13 @@
                     <div class="card-icon">
                         <i data-lucide="cpu" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Upgrade RAM & SSD</h3>
-                    <p>Upgrade komponen untuk performa maksimal dan booting lebih cepat</p>
+                    <h3 data-translate="upgradeTitle">Upgrade RAM & SSD</h3>
+                    <p data-translate="upgradeDesc">Upgrade komponen untuk performa maksimal dan booting lebih cepat</p>
                     <ul class="card-list">
-                        <li>RAM Upgrade</li>
-                        <li>SSD Installation</li>
-                        <li>Performance Tuning</li>
-                        <li>Component Consultation</li>
+                        <li data-translate="ramUpgrade">RAM Upgrade</li>
+                        <li data-translate="ssdInstall">SSD Installation</li>
+                        <li data-translate="perfTuning">Performance Tuning</li>
+                        <li data-translate="compConsult">Component Consultation</li>
                     </ul>
                 </div>
                 
@@ -766,13 +813,13 @@
                     <div class="card-icon">
                         <i data-lucide="hard-drive" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Perawatan Hardware</h3>
-                    <p>Cleaning dan maintenance hardware untuk umur panjang</p>
+                    <h3 data-translate="maintenanceTitle">Perawatan Hardware</h3>
+                    <p data-translate="maintenanceDesc">Cleaning dan maintenance hardware untuk umur panjang</p>
                     <ul class="card-list">
-                        <li>Dust Cleaning</li>
-                        <li>Thermal Paste</li>
-                        <li>Cable Management</li>
-                        <li>Hardware Check</li>
+                        <li data-translate="dustClean">Dust Cleaning</li>
+                        <li data-translate="thermal">Thermal Paste</li>
+                        <li data-translate="cable">Cable Management</li>
+                        <li data-translate="hwCheck">Hardware Check</li>
                     </ul>
                 </div>
                 
@@ -780,13 +827,13 @@
                     <div class="card-icon">
                         <i data-lucide="shield" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Perbaikan Laptop/PC</h3>
-                    <p>Service hardware dan software untuk berbagai masalah</p>
+                    <h3 data-translate="repairTitle">Perbaikan Laptop/PC</h3>
+                    <p data-translate="repairDesc">Service hardware dan software untuk berbagai masalah</p>
                     <ul class="card-list">
-                        <li>No Display</li>
-                        <li>Overheating</li>
-                        <li>Blue Screen</li>
-                        <li>Hardware Repair</li>
+                        <li data-translate="noDisplay">No Display</li>
+                        <li data-translate="overheating">Overheating</li>
+                        <li data-translate="blueScreen">Blue Screen</li>
+                        <li data-translate="hwRepair">Hardware Repair</li>
                     </ul>
                 </div>
                 
@@ -794,13 +841,13 @@
                     <div class="card-icon">
                         <i data-lucide="zap" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Optimasi Software</h3>
-                    <p>Optimasi sistem untuk performa terbaik dan stabil</p>
+                    <h3 data-translate="optimizeTitle">Optimasi Software</h3>
+                    <p data-translate="optimizeDesc">Optimasi sistem untuk performa terbaik dan stabil</p>
                     <ul class="card-list">
-                        <li>Speed Optimization</li>
-                        <li>Virus Removal</li>
-                        <li>System Cleanup</li>
-                        <li>Software Updates</li>
+                        <li data-translate="speedOpt">Speed Optimization</li>
+                        <li data-translate="virusRemoval">Virus Removal</li>
+                        <li data-translate="sysClean">System Cleanup</li>
+                        <li data-translate="swUpdates">Software Updates</li>
                     </ul>
                 </div>
                 
@@ -808,13 +855,13 @@
                     <div class="card-icon">
                         <i data-lucide="wifi" style="width: 32px; height: 32px; color: #3b82f6;"></i>
                     </div>
-                    <h3>Backup & Recovery</h3>
-                    <p>Backup data penting dan recovery data yang hilang</p>
+                    <h3 data-translate="backupTitle">Backup & Recovery</h3>
+                    <p data-translate="backupDesc">Backup data penting dan recovery data yang hilang</p>
                     <ul class="card-list">
-                        <li>Data Backup</li>
-                        <li>File Recovery</li>
-                        <li>Cloud Setup</li>
-                        <li>Data Migration</li>
+                        <li data-translate="dataBackup">Data Backup</li>
+                        <li data-translate="fileRecovery">File Recovery</li>
+                        <li data-translate="cloudSetup">Cloud Setup</li>
+                        <li data-translate="dataMigration">Data Migration</li>
                     </ul>
                 </div>
             </div>
@@ -826,13 +873,13 @@
         <div class="container">
             <div class="grid grid-2" style="align-items: center;">
                 <div class="opacity-0">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Tentang Kami</h2>
-                    <p class="text-lg text-gray-300 mb-6">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="aboutTitle">Tentang Kami</h2>
+                    <p class="text-lg text-gray-300 mb-6" data-translate="aboutText1">
                         IT Service adalah penyedia layanan komputer dan laptop profesional yang telah 
                         berpengalaman lebih dari 5 tahun dalam industri IT. Kami berkomitmen untuk 
                         memberikan solusi teknologi terbaik dengan harga terjangkau.
                     </p>
-                    <p class="text-lg text-gray-300 mb-6">
+                    <p class="text-lg text-gray-300 mb-6" data-translate="aboutText2">
                         Dengan tim ahli yang bersertifikat dan peralatan modern, kami siap 
                         menangani berbagai masalah teknologi dari yang sederhana hingga kompleks. 
                         Kepuasan pelanggan adalah prioritas utama kami.
@@ -840,11 +887,11 @@
                     <div class="grid grid-2" style="grid-template-columns: 1fr 1fr; gap: 24px;">
                         <div class="text-center">
                             <div class="text-3xl font-bold text-blue-400 mb-2">1000+</div>
-                            <div class="text-gray-400">Pelanggan Puas</div>
+                            <div class="text-gray-400" data-translate="satisfied">Pelanggan Puas</div>
                         </div>
                         <div class="text-center">
                             <div class="text-3xl font-bold text-blue-400 mb-2">5+</div>
-                            <div class="text-gray-400">Tahun Pengalaman</div>
+                            <div class="text-gray-400" data-translate="experience">Tahun Pengalaman</div>
                         </div>
                     </div>
                 </div>
@@ -868,98 +915,162 @@
     <section id="team">
         <div class="container">
             <div class="text-center mb-16 opacity-0">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Tim Kami</h2>
-                <p class="text-xl text-gray-400">6 ahli IT berpengalaman siap membantu Anda</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="teamTitle">Tim Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="teamSubtitle">6 ahli IT berpengalaman siap membantu Anda</p>
             </div>
             
             <div class="grid grid-3">
-                <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float">👨‍💻</div>
-                    <h3>Apik Rendi Firmansyah
-                    <div class="badge badge-primary">Hardware Specialist</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                <div class="card team-card opacity-0" style="text-align: center;">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/q3Rp7jCp/Apik.jpg" alt="Apik Rendi Firmansyah" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Apik Rendi Firmansyah</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px; display: inline-block;"><span data-translate="hardwareSpec">Hardware Specialist</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px; text-align: center;" data-translate="hardwareSpecDesc">
                         Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun
                     </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:apik@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
                     <div class="skills">
-                        <span class="skill-badge">Hardware Repair</span>
-                        <span class="skill-badge">PC Building</span>
-                        <span class="skill-badge">Component Diagnosis</span>
-                        <span class="skill-badge">Upgrade Specialist</span>
+                        <span class="skill-badge" data-translate="hardwareRepair">Hardware Repair</span>
+                        <span class="skill-badge" data-translate="pcBuilding">PC Building</span>
+                        <span class="skill-badge" data-translate="compDiag">Component Diagnosis</span>
+                        <span class="skill-badge" data-translate="upgradeSpec">Upgrade Specialist</span>
                     </div>
                 </div>
-                
+
                 <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float" style="animation-delay: 1s;">👩‍💻</div>
-                    <h3>Mochammad Rizqi Dirgantoro</h3>
-                    <div class="badge badge-primary">Software Engineer</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/JwRHpsy6/Mochammad.jpg" alt="Mochammad Rizqi Dirgantoro" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Mochammad Rizqi Dirgantoro</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="softwareEng">Software Engineer</div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="softwareEngDesc">
                         Expert dalam troubleshooting software dan instalasi sistem operasi
                     </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:rizqi@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
                     <div class="skills">
-                        <span class="skill-badge">OS Installation</span>
-                        <span class="skill-badge">Software Troubleshooting</span>
-                        <span class="skill-badge">Driver Management</span>
-                        <span class="skill-badge">System Optimization</span>
+                        <span class="skill-badge" data-translate="osInstall">OS Installation</span>
+                        <span class="skill-badge" data-translate="softwareTrouble">Software Troubleshooting</span>
+                        <span class="skill-badge" data-translate="driverManage">Driver Management</span>
+                        <span class="skill-badge" data-translate="sysOptimize">System Optimization</span>
                     </div>
                 </div>
-                
+
                 <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float" style="animation-delay: 2s;">👨‍🔧</div>
-                    <h3>Muhammad Rio Al Awal</h3>
-                    <div class="badge badge-primary">Network Engineer</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/N2HkLqDc/Muhammad.jpg" alt="Muhammad Rio Al Awal" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Muhammad Rio Al Awal</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="networkEng">Network Engineer</div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="networkEngDesc">
                         Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah
                     </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:rio@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
                     <div class="skills">
-                        <span class="skill-badge">Network Setup</span>
-                        <span class="skill-badge">WiFi Configuration</span>
-                        <span class="skill-badge">Security Systems</span>
-                        <span class="skill-badge">Cable Management</span>
+                        <span class="skill-badge" data-translate="networkSetup">Network Setup</span>
+                        <span class="skill-badge" data-translate="wifiConfig">WiFi Configuration</span>
+                        <span class="skill-badge" data-translate="securitySys">Security Systems</span>
+                        <span class="skill-badge" data-translate="cableManage">Cable Management</span>
                     </div>
                 </div>
-                
+
                 <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float" style="animation-delay: 3s;">👩‍🔬</div>
-                    <h3>Yaqut Mubarok Nailur Raja</h3>
-                    <div class="badge badge-primary">Data Recovery Expert</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
-                        Spesialis pemulihan data dan backup system yang hilang
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/C3PXthZL/Yaqut.jpg" alt="Yaqut Mubarok Nailur Raja" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Yaqut Mubarok Nailur Raja</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="dataRecovery">Data Recovery Expert</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="dataRecoveryDesc">
+                        Specialist in data recovery and backup system restoration
                     </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:yaqut@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
                     <div class="skills">
-                        <span class="skill-badge">Data Recovery</span>
-                        <span class="skill-badge">Backup Solutions</span>
-                        <span class="skill-badge">Forensik Digital</span>
-                        <span class="skill-badge">RAID Recovery</span>
+                        <span class="skill-badge" data-translate="dataRecoverySkills">Data Recovery</span>
+                        <span class="skill-badge" data-translate="backupSol">Backup Solutions</span>
+                        <span class="skill-badge" data-translate="digitalForensics">Forensik Digital</span>
+                        <span class="skill-badge" data-translate="raidRecovery">RAID Recovery</span>
                     </div>
                 </div>
-                
+
                 <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float" style="animation-delay: 4s;">🎮</div>
-                    <h3>Bagus Zandra Ihsani</h3>
-                    <div class="badge badge-primary">Gaming PC Builder</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
-                        Expert dalam build PC gaming dan optimasi performa
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/LhkT1Hdy/Bagus.jpg" alt="Bagus Zandra Ihsani" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Bagus Zandra Ihsani</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="gamingSpec">Gaming PC Builder</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="gamingSpecDesc">
                     </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:bagus@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
                     <div class="skills">
-                        <span class="skill-badge">Gaming PC Build</span>
-                        <span class="skill-badge">Overclocking</span>
-                        <span class="skill-badge">Performance Tuning</span>
-                        <span class="skill-badge">RGB Setup</span>
+                        <span class="skill-badge" data-translate="gamingBuild">Gaming PC Build</span>
+                        <span class="skill-badge" data-translate="overclocking">Overclocking</span>
+                        <span class="skill-badge" data-translate="perfTuning">Performance Tuning</span>
+                        <span class="skill-badge" data-translate="rgbSetup">RGB Setup</span>
                     </div>
                 </div>
-                
+
                 <div class="card team-card opacity-0">
-                    <div class="team-avatar animate-float" style="animation-delay: 5s;">👩‍💼</div>
-                    <h3>Reski Angga Pratama</h3>
-                    <div class="badge badge-primary">Customer Relations</div>
-                    <p style="color: #9ca3af; font-size: 14px; margin: 16px 0;">
-                        Koordinator layanan pelanggan dan project manager
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/0yYwH31Z/Reski.jpg" alt="Reski Angga Pratama" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Reski Angga Pratama</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="custRelations">Customer Relations</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="custRelationsDesc">
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://instagram.com/username" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:reski@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
                     </p>
                     <div class="skills">
-                        <span class="skill-badge">Customer Service</span>
-                        <span class="skill-badge">Project Management</span>
-                        <span class="skill-badge">Communication</span>
-                        <span class="skill-badge">Quality Control</span>
+                        <span class="skill-badge" data-translate="custService">Customer Service</span>
+                        <span class="skill-badge" data-translate="projManagement">Project Management</span>
+                        <span class="skill-badge" data-translate="communication">Communication</span>
+                        <span class="skill-badge" data-translate="qualityControl">Quality Control</span>
                     </div>
                 </div>
             </div>
@@ -970,8 +1081,8 @@
     <section id="testimonials" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
         <div class="container">
             <div class="text-center mb-16 opacity-0">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Testimoni Pelanggan</h2>
-                <p class="text-xl text-gray-400">Apa kata mereka tentang layanan kami</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="testimonialsTitle">Testimoni Pelanggan</h2>
+                <p class="text-xl text-gray-400" data-translate="testimonialsSubtitle">Apa kata mereka tentang layanan kami</p>
             </div>
             
             <div class="testimonial-card card opacity-0">
@@ -982,11 +1093,11 @@
                     <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
                     <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
                 </div>
-                <p class="testimonial-text" id="testimonialText">
+                <p class="testimonial-text" id="testimonialText" data-translate="testimonialText">
                     "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah."
                 </p>
-                <div class="testimonial-author" id="testimonialAuthor">Andi Wijaya</div>
-                <div class="testimonial-position" id="testimonialPosition">CEO Tech Startup</div>
+                <div class="testimonial-author" id="testimonialAuthor" data-translate="testimonialAuthor">Andi Wijaya</div>
+                <div class="testimonial-position" id="testimonialPosition" data-translate="testimonialPosition">CEO Tech Startup</div>
             </div>
             
             <div class="testimonial-nav">
@@ -1002,22 +1113,22 @@
     <section id="contact">
         <div class="container">
             <div class="text-center mb-16 opacity-0">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Hubungi Kami</h2>
-                <p class="text-xl text-gray-400">Siap membantu 24/7 untuk kebutuhan IT Anda</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="contactTitle">Hubungi Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="contactSubtitle">Siap membantu 24/7 untuk kebutuhan IT Anda</p>
             </div>
             
             <div class="grid grid-2">
                 <div class="opacity-0">
                     <div class="card">
-                        <h3 style="font-size: 24px; margin-bottom: 8px; color: white;">Kirim Pesan</h3>
-                        <p style="color: #9ca3af; margin-bottom: 24px;">Kami akan segera merespon pesan Anda</p>
+                        <h3 style="font-size: 24px; margin-bottom: 8px; color: white;" data-translate="sendMessage">Kirim Pesan</h3>
+                        <p style="color: #9ca3af; margin-bottom: 24px;" data-translate="messageResponse">Kami akan segera merespon pesan Anda</p>
                         <form action="https://formsubmit.co/pamanerizqi@gmail.com" method="POST" style="display:flex;flex-direction:column;gap:16px;">
-                            <input type="text" name="nama" placeholder="Nama Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;">
-                            <input type="email" name="email" placeholder="Email Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;">
-                            <textarea name="pesan" placeholder="Pesan Anda" required style="padding:12px;border-radius:6px;border:1px solid #ccc;min-height:100px;"></textarea>
+                            <input type="text" name="nama" placeholder="Nama Anda" required data-translate="yourName" style="padding:12px;border-radius:6px;border:1px solid #ccc;">
+                            <input type="email" name="email" placeholder="Email Anda" required data-translate="yourEmail" style="padding:12px;border-radius:6px;border:1px solid #ccc;">
+                            <textarea name="pesan" placeholder="Pesan Anda" required data-translate="yourMessage" style="padding:12px;border-radius:6px;border:1px solid #ccc;min-height:100px;"></textarea>
                             <button type="submit" style="background:#3b82f6;color:#fff;padding:12px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;width:100%;">
                                 <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
-                                Kirim Pesan
+                                <span data-translate="sendMessage">Kirim Pesan</span>
                             </button>
                         </form>
                     </div>
@@ -1029,7 +1140,7 @@
                             <i data-lucide="phone" style="width: 24px; height: 24px; color: #3b82f6;"></i>
                         </div>
                         <div>
-                            <div style="font-weight: 600; color: white;">Telepon</div>
+                            <div style="font-weight: 600; color: white;" data-translate="phoneLabel">Telepon</div>
                             <div style="color: #9ca3af;">0858-4815-5578</div>
                         </div>
                     </div>
@@ -1039,7 +1150,7 @@
                             <i data-lucide="mail" style="width: 24px; height: 24px; color: #3b82f6;"></i>
                         </div>
                         <div>
-                            <div style="font-weight: 600; color: white;">Email</div>
+                            <div style="font-weight: 600; color: white;" data-translate="emailLabel">Email</div>
                             <div style="color: #9ca3af;">pamanerizqi@gmail.com</div>
                         </div>
                     </div>
@@ -1049,7 +1160,7 @@
                             <i data-lucide="map-pin" style="width: 24px; height: 24px; color: #3b82f6;"></i>
                         </div>
                         <div>
-                            <div style="font-weight: 600; color: white;">Alamat</div>
+                            <div style="font-weight: 600; color: white;" data-translate="addressLabel">Alamat</div>
                             <div style="color: #9ca3af;">SMKN 1 Purwokerto, TJKT</div>
                         </div>
                     </div>
@@ -1057,7 +1168,7 @@
                     <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
                        target="_blank" class="btn btn-primary" style="width: 100%; background: #10b981;">
                         <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
-                        Chat via WhatsApp
+                        <span data-translate="chatWhatsApp">Chat via WhatsApp</span>
                     </a>
                     
                     <div style="width: 100%; height: 256px; border-radius: 16px; overflow: hidden; margin-top: 16px;">
@@ -1073,29 +1184,29 @@
         <div class="footer-content">
             <div>
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                    <div style="width: 32px; height: 32px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                        <i data-lucide="cpu" style="width: 20px; height: 20px; color: white;"></i>
+                    <div style="width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width:32px;height:32px;">
                     </div>
-                    <span style="font-size: 20px; font-weight: bold;" class="gradient-text">IT Service</span>
+                    <span style="font-size: 20px; font-weight: bold;" class="gradient-text" data-translate="brandName">Syarar Tech</span>
                 </div>
-                <p style="color: #9ca3af;">
+                <p style="color: #9ca3af;" data-translate="footerTagline">
                     Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.
                 </p>
             </div>
             
             <div>
-                <h3 style="color: white; margin-bottom: 16px;">Quick Links</h3>
+                <h3 style="color: white; margin-bottom: 16px;" data-translate="quickLinksTitle">Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" data-translate="menuHome">Home</a></li>
+                    <li><a href="#services" data-translate="menuServices">Services</a></li>
+                    <li><a href="#about" data-translate="menuAbout">About</a></li>
+                    <li><a href="#team" data-translate="menuTeam">Team</a></li>
+                    <li><a href="#contact" data-translate="menuContact">Contact</a></li>
                 </ul>
             </div>
             
             <div>
-                <h3 style="color: white; margin-bottom: 16px;">Follow Us</h3>
+                <h3 style="color: white; margin-bottom: 16px;" data-translate="followUsTitle">Follow Us</h3>
                 <div class="social-links">
                     <a href="#" class="social-link">
                         <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
@@ -1114,7 +1225,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>© 2024 IT Service. All rights reserved. Made with ❤️ in Indonesia</p>
+            <p data-translate="copyright">© 2024 IT Service. All rights reserved. Made with ❤️ in Indonesia</p>
         </div>
     </footer>
     
@@ -1226,36 +1337,14 @@
         });
         
         // Testimonials
-        const testimonials = [
-            {
-                text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
-                author: "Andi Wijaya",
-                position: "CEO Tech Startup"
-            },
-            {
-                text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
-                author: "Sarah Putri",
-                position: "Freelance Designer"
-            },
-            {
-                text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
-                author: "Budi Hartono",
-                position: "IT Manager"
-            },
-            {
-                text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
-                author: "Maya Anggraini",
-                position: "Content Creator"
-            }
-        ];
-        
         let currentTestimonial = 0;
         
         function showTestimonial(index) {
             currentTestimonial = index;
-            document.getElementById('testimonialText').textContent = `"${testimonials[index].text}"`;
-            document.getElementById('testimonialAuthor').textContent = testimonials[index].author;
-            document.getElementById('testimonialPosition').textContent = testimonials[index].position;
+            const currentTestimonials = translations[currentLanguage].testimonials;
+            document.getElementById('testimonialText').textContent = `"${currentTestimonials[index].text}"`;
+            document.getElementById('testimonialAuthor').textContent = currentTestimonials[index].author;
+            document.getElementById('testimonialPosition').textContent = currentTestimonials[index].position;
             
             // Update dots
             document.querySelectorAll('.dot').forEach((dot, i) => {
@@ -1303,8 +1392,421 @@
                 }
             });
         });
+
+        // Language translations
+        const translations = {
+            en: {
+                // Brand & Menu
+                brandName: "Syarar Tech",
+                menuHome: "Home",
+                menuServices: "Services",
+                menuAbout: "About",
+                menuTeam: "Team",
+                menuContact: "Contact",
+                heroTitle: "Professional Computer & Laptop Service",
+                heroSubtitle: "OS installation, RAM/SSD upgrades, hardware repairs, software troubleshooting, all fast & guaranteed.",
+                heroSuffix: "Professional",
+                orderNow: "Order Now",
+                contactUs: "Contact Us",
+                servicesTitle: "Our Services",
+                servicesSubtitle: "Complete solutions for all your IT needs",
+                aboutTitle: "About Us",
+                aboutText1: "Syarar Tech is a professional computer and laptop service provider with over 5 years of experience in the IT industry. We are committed to providing the best technology solutions at affordable prices.",
+                aboutText2: "With our certified expert team and modern equipment, we are ready to handle various technology issues from simple to complex. Customer satisfaction is our top priority.",
+                satisfied: "Satisfied Customers",
+                experience: "Years Experience",
+                teamTitle: "Our Team",
+                teamSubtitle: "6 experienced IT experts ready to help you",
+                testimonialsTitle: "Customer Testimonials",
+                testimonialsSubtitle: "What they say about our services",
+                contactTitle: "Contact Us",
+                contactSubtitle: "Ready to help 24/7 for your IT needs",
+                sendMessage: "Send Message",
+                yourName: "Your Name",
+                yourEmail: "Your Email",
+                yourMessage: "Your Message",
+                address: "Address",
+                phone: "Phone",
+                phoneLabel: "Phone",
+                emailLabel: "Email",
+                addressLabel: "Address",
+                chatWhatsApp: "Chat via WhatsApp",
+                quickLinks: "Quick Links",
+                followUs: "Follow Us",
+                footerTagline: "Trusted technology solutions for all your computer and laptop needs.",
+                quickLinksTitle: "Quick Links",
+                followUsTitle: "Follow Us",
+                copyright: "© 2024 Syarar Tech. All rights reserved. Made with ❤️ in Indonesia",
+                // Service Cards
+                installTitle: "Windows/Linux Installation",
+                installDesc: "Windows and Linux operating system installation with complete drivers",
+                windows: "Windows 10/11",
+                linux: "Ubuntu/Linux Mint",
+                driver: "Driver Installation",
+                software: "Software Setup",
+                upgradeTitle: "RAM & SSD Upgrade",
+                upgradeDesc: "Component upgrades for maximum performance and faster booting",
+                ramUpgrade: "RAM Upgrade",
+                ssdInstall: "SSD Installation",
+                perfTuning: "Performance Tuning",
+                compConsult: "Component Consultation",
+                maintenanceTitle: "Hardware Maintenance",
+                maintenanceDesc: "Hardware cleaning and maintenance for longer lifespan",
+                dustClean: "Dust Cleaning",
+                thermal: "Thermal Paste",
+                cable: "Cable Management",
+                hwCheck: "Hardware Check",
+                // Additional elements
+                satisfied: "Satisfied Customers",
+                experience: "Years Experience",
+                messageResponse: "We will respond to your message soon",
+                testimonials: [
+                    {
+                        text: "Excellent service! My dead laptop was revived in just 2 days. Professional and friendly team.",
+                        author: "Andy Wijaya",
+                        position: "Tech Startup CEO"
+                    },
+                    {
+                        text: "RAM and SSD upgrade made my laptop 10x faster. Affordable price with maximum results. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "IT Service team was very helpful in setting up our office network. Fast response and solution oriented. Thank you!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Lost data due to virus was 100% recovered. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ],
+                // Team members titles and descriptions
+                hardwareSpec: "Hardware Specialist",
+                hardwareSpecDesc: "Hardware repair and computer upgrade specialist with 5+ years of experience",
+                softwareEng: "Software Engineer",
+                softwareEngDesc: "Expert in software troubleshooting and operating system installation",
+                networkEng: "Network Engineer",
+                networkEngDesc: "Network and system configuration expert for offices and homes",
+                dataRecoveryDesc: "Specialist in data recovery and backup system restoration",
+                gamingSpecDesc: "Expert in gaming PC builds and performance optimization",
+                custRelationsDesc: "Customer service coordinator and project manager",
+                // Team Skills
+                networkSetup: "Network Setup",
+                wifiConfig: "WiFi Configuration",
+                securitySys: "Security Systems",
+                cableManage: "Cable Management",
+                dataRecoverySkills: "Data Recovery",
+                backupSol: "Backup Solutions",
+                digitalForensics: "Digital Forensics",
+                raidRecovery: "RAID Recovery",
+                gamingBuild: "Gaming PC Build",
+                overclocking: "Overclocking",
+                perfTuning: "Performance Tuning",
+                rgbSetup: "RGB Setup",
+                custService: "Customer Service",
+                projManagement: "Project Management",
+                communication: "Communication",
+                qualityControl: "Quality Control",
+                dataRecovery: "Data Recovery Expert",
+                gamingSpec: "Gaming PC Builder",
+                gamingSpecDesc: "Expert in gaming PC builds and performance optimization",
+                custRelations: "Customer Relations",
+                custRelationsDesc: "Customer service coordinator and project manager",
+                // Testimonials
+                testimonialText: "Excellent service! My dead laptop was revived in just 2 days. Professional and friendly team.",
+                testimonialAuthor: "Andy Wijaya",
+                testimonialPosition: "Tech Startup CEO",
+                // Skills
+                hardwareRepair: "Hardware Repair",
+                pcBuilding: "PC Building",
+                compDiag: "Component Diagnosis",
+                upgradeSpec: "Upgrade Specialist",
+                osInstall: "OS Installation",
+                softwareTrouble: "Software Troubleshooting",
+                driverManage: "Driver Management",
+                sysOptimize: "System Optimization",
+                // Additional Services
+                repairTitle: "PC/Laptop Repair",
+                repairDesc: "Hardware and software service for various issues",
+                noDisplay: "No Display",
+                overheating: "Overheating",
+                blueScreen: "Blue Screen",
+                hwRepair: "Hardware Repair",
+                optimizeTitle: "Software Optimization",
+                optimizeDesc: "System optimization for best and stable performance",
+                speedOpt: "Speed Optimization",
+                virusRemoval: "Virus Removal",
+                sysClean: "System Cleanup",
+                swUpdates: "Software Updates",
+                backupTitle: "Backup & Recovery",
+                backupDesc: "Important data backup and lost data recovery",
+                dataBackup: "Data Backup",
+                fileRecovery: "File Recovery",
+                cloudSetup: "Cloud Setup",
+                dataMigration: "Data Migration"
+                ,
+                testimonials: [
+                    {
+                        text: "Service was excellent! My laptop that was completely dead was revived in 2 days. Professional and friendly team.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "RAM and SSD upgrade made my laptop 10x faster. Affordable and excellent results. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "The IT Service team helped set up our office network. Fast response and solution-oriented. Thank you!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Lost data due to a virus was 100% recovered. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ]
+            },
+            id: {
+                // Brand & Menu
+                brandName: "Syarar Tech",
+                menuHome: "Beranda",
+                menuServices: "Layanan",
+                menuAbout: "Tentang",
+                menuTeam: "Tim",
+                menuContact: "Kontak",
+                heroTitle: "Jasa Service Komputer & Laptop Profesional",
+                heroSubtitle: "Install ulang, upgrade RAM/SSD, perbaikan hardware, troubleshooting software, semua cepat & bergaransi.",
+                orderNow: "Pesan Sekarang",
+                contactUs: "Hubungi Kami",
+                servicesTitle: "Layanan Kami",
+                servicesSubtitle: "Solusi lengkap untuk semua kebutuhan IT Anda",
+                aboutTitle: "Tentang Kami",
+                aboutText1: "Syarar Tech adalah penyedia layanan komputer dan laptop profesional yang telah berpengalaman lebih dari 5 tahun dalam industri IT. Kami berkomitmen untuk memberikan solusi teknologi terbaik dengan harga terjangkau.",
+                aboutText2: "Dengan tim ahli yang bersertifikat dan peralatan modern, kami siap menangani berbagai masalah teknologi dari yang sederhana hingga kompleks. Kepuasan pelanggan adalah prioritas utama kami.",
+                teamTitle: "Tim Kami",
+                teamSubtitle: "6 ahli IT berpengalaman siap membantu Anda",
+                testimonialsTitle: "Testimoni Pelanggan",
+                testimonialsSubtitle: "Apa kata mereka tentang layanan kami",
+                contactTitle: "Hubungi Kami",
+                contactSubtitle: "Siap membantu 24/7 untuk kebutuhan IT Anda",
+                sendMessage: "Kirim Pesan",
+                yourName: "Nama Anda",
+                yourEmail: "Email Anda",
+                yourMessage: "Pesan Anda",
+                address: "Alamat",
+                phone: "Telepon",
+                phoneLabel: "Telepon",
+                emailLabel: "Email",
+                addressLabel: "Alamat",
+                chatWhatsApp: "Chat via WhatsApp",
+                quickLinks: "Quick Links",
+                followUs: "Ikuti Kami",
+                footerTagline: "Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.",
+                quickLinksTitle: "Link Cepat",
+                followUsTitle: "Ikuti Kami",
+                copyright: "© 2024 Syarar Tech. Hak Cipta Dilindungi. Dibuat dengan ❤️ di Indonesia",
+                // Service Cards
+                installTitle: "Install Ulang Windows/Linux",
+                installDesc: "Install ulang sistem operasi Windows dan Linux dengan driver lengkap",
+                windows: "Windows 10/11",
+                linux: "Ubuntu/Linux Mint",
+                driver: "Instalasi Driver",
+                software: "Setup Software",
+                upgradeTitle: "Upgrade RAM & SSD",
+                upgradeDesc: "Upgrade komponen untuk performa maksimal dan booting lebih cepat",
+                ramUpgrade: "Upgrade RAM",
+                ssdInstall: "Instalasi SSD",
+                perfTuning: "Optimasi Performa",
+                compConsult: "Konsultasi Komponen",
+                maintenanceTitle: "Perawatan Hardware",
+                maintenanceDesc: "Cleaning dan maintenance hardware untuk umur panjang",
+                dustClean: "Pembersihan Debu",
+                thermal: "Pasta Thermal",
+                cable: "Manajemen Kabel",
+                hwCheck: "Cek Hardware",
+                // Additional elements
+                satisfied: "Pelanggan Puas",
+                experience: "Tahun Pengalaman",
+                messageResponse: "Kami akan segera merespon pesan Anda",
+                testimonials: [
+                    {
+                        text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ],
+                // Team members titles and descriptions
+                hardwareSpec: "Spesialis Hardware",
+                hardwareSpecDesc: "Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun",
+                softwareEng: "Software Engineer",
+                softwareEngDesc: "Expert dalam troubleshooting software dan instalasi sistem operasi",
+                networkEng: "Network Engineer",
+                networkEngDesc: "Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah",
+                dataRecoveryDesc: "Spesialis pemulihan data dan sistem backup",
+                gamingSpecDesc: "Ahli dalam pembuatan PC gaming dan optimasi performa",
+                custRelationsDesc: "Koordinator layanan pelanggan dan manajer proyek",
+                // Team Skills
+                networkSetup: "Setup Jaringan",
+                wifiConfig: "Konfigurasi WiFi",
+                securitySys: "Sistem Keamanan",
+                cableManage: "Manajemen Kabel",
+                dataRecoverySkills: "Pemulihan Data",
+                backupSol: "Solusi Backup",
+                digitalForensics: "Forensik Digital",
+                raidRecovery: "Pemulihan RAID",
+                gamingBuild: "Rakit PC Gaming",
+                overclocking: "Overclocking",
+                perfTuning: "Optimasi Performa",
+                rgbSetup: "Setup RGB",
+                custService: "Layanan Pelanggan",
+                projManagement: "Manajemen Proyek",
+                communication: "Komunikasi",
+                qualityControl: "Kontrol Kualitas",
+                dataRecovery: "Ahli Data Recovery",
+                dataRecoveryDesc: "Spesialis pemulihan data dan backup system yang hilang",
+                gamingSpec: "Spesialis PC Gaming",
+                gamingSpecDesc: "Expert dalam build PC gaming dan optimasi performa",
+                custRelations: "Customer Relations",
+                custRelationsDesc: "Koordinator layanan pelanggan dan project manager",
+                // Testimonials
+                testimonialText: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                testimonialAuthor: "Andi Wijaya",
+                testimonialPosition: "CEO Tech Startup",
+                // Skills
+                hardwareRepair: "Perbaikan Hardware",
+                pcBuilding: "Rakit PC",
+                compDiag: "Diagnosis Komponen",
+                upgradeSpec: "Spesialis Upgrade",
+                osInstall: "Instalasi OS",
+                softwareTrouble: "Troubleshooting Software",
+                driverManage: "Manajemen Driver",
+                sysOptimize: "Optimasi Sistem",
+                // Additional Services
+                repairTitle: "Perbaikan Laptop/PC",
+                repairDesc: "Service hardware dan software untuk berbagai masalah",
+                noDisplay: "Layar Mati",
+                overheating: "Panas Berlebih",
+                blueScreen: "Layar Biru",
+                hwRepair: "Perbaikan Hardware",
+                optimizeTitle: "Optimasi Software",
+                optimizeDesc: "Optimasi sistem untuk performa terbaik dan stabil",
+                speedOpt: "Optimasi Kecepatan",
+                virusRemoval: "Pembersihan Virus",
+                sysClean: "Pembersihan Sistem",
+                swUpdates: "Update Software",
+                backupTitle: "Backup & Recovery",
+                backupDesc: "Backup data penting dan recovery data yang hilang",
+                dataBackup: "Backup Data",
+                fileRecovery: "Recovery File",
+                cloudSetup: "Setup Cloud",
+                dataMigration: "Migrasi Data"
+                ,
+                testimonials: [
+                    {
+                        text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ]
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update all elements with data-translate attribute
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        if (element.innerHTML.includes('<br>')) {
+                            // Handle elements with line breaks
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                        }
+                    }
+                }
+            });
+
+            // Trigger translation immediately
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Force a DOM refresh
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger a reflow
+            document.body.style.display = '';
+            
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const key = link.getAttribute('href').substring(1);
+                if (translations[lang][key]) {
+                    link.textContent = translations[lang][key];
+                }
+            });
+
+            // Update testimonials array if translations provided
+            if (translations[lang] && translations[lang].testimonials) {
+                testimonials = translations[lang].testimonials;
+                currentTestimonial = 0;
+                showTestimonial(0);
+            }
+
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load preferred language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const langSelect = document.getElementById('languageSelect');
+            if (savedLang) {
+                langSelect.value = savedLang;
+            }
+            changeLanguage(langSelect.value);
+            
+            // Add event listener for language changes
+            langSelect.addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+                localStorage.setItem('preferredLanguage', e.target.value);
+            });
+        });
     </script>
-</script>
 
 
 </body>
